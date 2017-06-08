@@ -51,6 +51,7 @@ ul
      -moz-appearance: none;
 	 -webkit-appearance: none;
 	 box-shadow: none;
+	 outline: 0;
 }
 #results {
      margin-top: 10px;

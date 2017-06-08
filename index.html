@@ -40,33 +40,57 @@
 			url: 'db/db.json',
 		}).done(function(response) {
 			db = response;
+			delegate_search(db);
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			alert(errorThrown);
 		}).always(function() {
 			// this happens error or not
 		});
 
-		$('#search_input').on('keyup', function() {
-			$('#results').html('<div id="num_results"></div>'); // delete all inside results, reset this section
-			results = '';
-			search_val = $(this).val();
-			if(search_val) {
-				count_res = 0;
-				for(var page in db) {
-					found = db[page].title.toLowerCase().indexOf(search_val.toLowerCase()) > -1;
-					if(found) {
-						results += '<a class="result" href="details.html' +db[page].url+ '">';
-						results += '<div class="search_details">';
-						results += '<h1 class="title">' +db[page].title+ '</h1>';
-						results += '<p class="description">' +db[page].text+ '</p>';
-						results += '</div></a>';
+		function delegate_search(db) {
+			$('#search_input').on('keyup', function() {
+				$('#results').html('<div id="num_results"></div>'); // delete all inside results, reset this section
+				results = '';
+				search_val = $(this).val();
+				if(search_val != '') {
+					count_res = 0;
+					for(var page in db) {
+						found = db[page].title.toLowerCase().indexOf(search_val.toLowerCase()) > -1;
+						if(found) {
+							results += '<a class="result" href="details.html' +db[page].url+ '">';
+							results += '<div class="search_details">';
+							results += '<h1 class="title">' +db[page].title+ '</h1>';
+							results += '<p class="description">' +db[page].text+ '</p>';
+							results += '</div></a>';
+							count_res += 1;
+						}
+					}
+				}
+				else {
+					var x=0;
+					var page;
+					var db_keys = Object.keys(db);
+					var count_res = 0;
+					while(x <= 9) {
+						page = db_keys[x];
+						if(typeof page !== 'undefined') {
+							results += '<a class="result" href="details.html' +db[page].url+ '">';
+							results += '<div class="search_details">';
+							results += '<h1 class="title">' +db[page].title+ '</h1>';
+							results += '<p class="description">' +db[page].text+ '</p>';
+							results += '</div></a>';
+							x += 1;
+						}
+						else {
+							break;
+						}
 						count_res += 1;
 					}
 				}
 				$('#results #num_results').append('<span>Found ' +count_res+ ' results</span>');
 				$('#results').append(results);
-			}
-		});
+			});
+		}
 
 	</script>
 </body>

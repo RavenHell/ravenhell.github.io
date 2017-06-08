@@ -38,6 +38,10 @@ ul
      max-width: 900px;
      padding: 0 30px;
 }
+
+table {
+	min-width: 75%;
+}
 .search_details {
      padding-top: 1px;
 }

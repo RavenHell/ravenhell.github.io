@@ -55,7 +55,7 @@ ul
 }
 #results {
      margin-top: 10px;
-     padding-top: 10px;
+     padding-top: 30px;
    	 max-width: 900px;
 }
 #num_results {
@@ -70,6 +70,7 @@ ul
      font-size: 30px;
      margin-bottom: 0;
      color: #666666;
+     font-weight: 200;
 }
 .result .description {
      color: #333333;

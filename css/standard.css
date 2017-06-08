@@ -67,8 +67,7 @@ ul
      text-decoration: none;
 }
 .result .title {
-     font-size: 30px;
-     margin-bottom: 0;
+     font: 100 26px/1.7 Roboto, sans-serif;
      color: #666666;
      font-weight: 200;
 }

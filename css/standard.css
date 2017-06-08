@@ -74,7 +74,8 @@ ul
 }
 .result .description {
      color: #333333;
-     font-weight: 400;
+     font: 300 15px/1.7 Roboto, sans-serif;
+
 }
 
 

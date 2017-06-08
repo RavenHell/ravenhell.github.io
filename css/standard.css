@@ -43,10 +43,11 @@ ul
 }
 #search_input {
 	 font: 300 14px/1 Roboto, sans-serif;
-     height: 25px;
+	 border: 1px solid #e3e3e3;
+     height: 34px;
      display: block;
      margin: 0 auto;
-     width: 280px;
+     width: 269px;
 }
 #results {
      margin-top: 10px;

@@ -1,7 +1,7 @@
 /* basics */
 
 body {
-     font-family: Roboto, Helvetica;
+     font-family: Roboto, sans-serif;
 }
 
 a
@@ -44,10 +44,13 @@ ul
 #search_input {
 	 font: 300 14px/1 Roboto, sans-serif;
 	 border: 1px solid #e3e3e3;
-     height: 34px;
      display: block;
      margin: 0 auto;
-     width: 269px;
+     width: 250px;
+     padding: 10px;
+     -moz-appearance: none;
+	 -webkit-appearance: none;
+	 box-shadow: none;
 }
 #results {
      margin-top: 10px;

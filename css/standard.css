@@ -62,6 +62,7 @@ ul
      font: 300 14px/1.7 Roboto, sans-serif;
 }
 .result {
+     padding: 10px 0;
      border-bottom: 1px solid #666666;
      text-decoration: none;
 }

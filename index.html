@@ -1,97 +1,65 @@
-
 <!DOCTYPE html>
-
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Windows Exploits</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
-	<link rel="stylesheet" href="css/standard.css">
-
-</head>
-<body>
-
-	<div class="center" style="padding-top: 150px;"><a href="index.html"><img src="img/logo.png" class="front_img" alt="Windows Exploits"></a></div>
-	<div class="center" style="padding-top: 10px;"><h2>Windows Exploits</h2></div>
-
-	<div class="block" style="padding-top: 31px;">
-
-	<input type="text" name="q" autofocus="autofocus" id="search_input">
-
-	<div id="results">
-		<div id="num_results">
-			
+	<head>
+		<title>Windows Exploits</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+		<link rel="stylesheet" href="css/standard.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	</head>
+	<body>
+		<div class="center" style="padding-top: 145px;"><a href="index.html"><img src="img/logo.png" class="front_img" alt="Windows Exploits"></a></div>
+		<div class="center" style="padding-top: 10px;">
+			<h2>Windows Exploits</h2>
 		</div>
-	</div>
-
-	<div class="block" style="padding-top: 50px;">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-	<script type="text/javascript">
-
-		// saving in ram all pages and it's properties
-
-		var db, results, search_val, found, count_res;
-
-		$.ajax({
-			type: 'GET',
-			url: 'db/db.json',
-		}).done(function(response) {
-			db = response;
-			delegate_search(db);
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			alert(errorThrown);
-		}).always(function() {
-			// this happens error or not
-		});
-
-		function delegate_search(db) {
-			$('#search_input').on('keyup', function() {
-				$('#results').html('<div id="num_results"></div>'); // delete all inside results, reset this section
-				results = '';
-				search_val = $(this).val();
-				if(search_val != '') {
-					count_res = 0;
-					for(var page in db) {
-						found = db[page].title.toLowerCase().indexOf(search_val.toLowerCase()) > -1;
-						if(found) {
-							results += '<a class="result" href="details.html' +db[page].url+ '">';
-							results += '<div class="search_details">';
-							results += '<h1 class="title">' +db[page].title+ '</h1>';
-							results += '<p class="description">' +db[page].text+ '</p>';
-							results += '</div></a>';
-							count_res += 1;
+		<div class="block" style="padding-top: 31px;">
+			<input type="text" name="q" autofocus="autofocus" id="search_input">
+			<div id="results">
+				<div id="num_results">
+				</div>
+			</div>
+			<div class="block" style="padding-top: 50px;">
+				<script type="text/javascript">
+					// saving in ram all pages and it's properties
+					
+					var db, results, search_val, found, count_res;
+					
+					$.ajax({
+						type: 'GET',
+						url: 'db.json',
+					}).done(function(response) {
+						db = response;
+					}).fail(function(jqXHR, textStatus, errorThrown) {
+						alert(errorThrown);
+					}).always(function() {
+						// this happens error or not
+					});
+					
+					$('#search_input').on('keyup', function() {
+						$('#results').html('<div id="num_results"></div>'); // delete all inside results, reset this section
+						results = '';
+						search_val = $(this).val();
+						if(search_val) {
+							count_res = 0;
+							for(var page in db) {
+								found = db[page].title.toLowerCase().indexOf(search_val.toLowerCase()) > -1;
+								if(found) {
+									results += '<a class="result" href="details.html' +db[page].url+ '">';
+									results += '<div class="search_details">';
+									results += '<h1 class="title">' +db[page].title+ '</h1>';
+									results += '<p class="description">' +db[page].text+ '</p>';
+									results += '</div></a>';
+									count_res += 1;
+								}
+							}
+							$('#results #num_results').append('<span>Found ' +count_res+ ' results</span>');
+							$('#results').append(results);
 						}
-					}
-				}
-				else {
-					var x=0;
-					var page;
-					var db_keys = Object.keys(db);
-					var count_res = 0;
-					while(x <= 9) {
-						page = db_keys[x];
-						if(typeof page !== 'undefined') {
-							results += '<a class="result" href="details.html' +db[page].url+ '">';
-							results += '<div class="search_details">';
-							results += '<h1 class="title">' +db[page].title+ '</h1>';
-							results += '<p class="description">' +db[page].text+ '</p>';
-							results += '</div></a>';
-							x += 1;
-						}
-						else {
-							break;
-						}
-						count_res += 1;
-					}
-				}
-				$('#results #num_results').append('<span>Found ' +count_res+ ' results</span>');
-				$('#results').append(results);
-			});
-		}
-
-	</script>
-</body>
+					});
+				</script>
+			</div>
+		</div>
+	</body>
 </html>

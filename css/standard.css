@@ -1,5 +1,3 @@
-
-
 /* basics */
 
 body {
@@ -133,4 +131,8 @@ h2
 }
 
 
-
+#Search
+.search_details
+{
+     color: #333;
+}

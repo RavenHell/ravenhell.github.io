@@ -1,3 +1,5 @@
+
+
 /* basics */
 
 body {
@@ -42,6 +44,7 @@ ul
      padding-top: 15px;
 }
 #search_input {
+	 font: 300 14px/1 Roboto, sans-serif;
      height: 25px;
      display: block;
      margin: 0 auto;
@@ -50,11 +53,10 @@ ul
 #results {
      margin-top: 10px;
      padding-top: 30px;
+     text-align: center;
 }
 #num_results {
-     font-size: 14px;
-     font-weight: 200;
-     color: #333;
+     font: 300 14px/1 Roboto, sans-serif;
 }
 .result {
      padding: 20px 0;
@@ -126,4 +128,9 @@ h2
 {
      max-width: 150px;
      height: auto;
+}
+
+.search_details
+{
+     color: #333;
 }

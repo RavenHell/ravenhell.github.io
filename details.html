@@ -1,127 +1,114 @@
-
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Windows Exploits</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-<link rel="stylesheet" href="css/standard.css">
-
-</head><body>
-
-<div id="head"><div class="head_img"><a href="index.html"><img src="img/logo2.png" style="width: 32px; height: 32px;" alt="Tipue"></a></div></div>
-
-
-<div class="block">
-<div id="description" class="low" style="padding-top: 100px;">
-
-<div id="page_title">
-	<h1></h1>
-</div>
-<div id="description_section">
-	<h2>Description</h2>
-	
-</div>
-<br>
-<h2>Affected Products</h2>
-<p><table id="affeted_prods_section">
-	<thead>
-		
-	</thead>
-	<tbody>
-		
-	</tbody>
-</table>
-<br>
-<div id="exploits_section">
-<h2>Exploits</h2>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-<script type="text/javascript">
-
-	// saving in ram all pages and it's properties
-
-	function render_content(content) {
-		$('#page_title h1').append(content.title);
-
-		var description_details = '';
-		var details = content.description_details;
-
-		for(var desc_detail in details) {
-			description_details += '<p><strong>' +desc_detail+ ':</strong> ' +details[desc_detail]+ '</p>';
-		}
-
-		var affeted_prods = content.affected_products;
-		var thead = '<tr>';
-		for(var column in affeted_prods.columns) {
-			thead += "<th style='text-align:left;' >" +affeted_prods.columns[column]+ "</th>";
-		}
-		thead += '</tr>';
-
-		var tbody = '';
-		for(var val in affeted_prods.vals) {
-			tbody += '<tr>';
-			tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].name+ "</td>";
-			tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].version+ "</td>";
-			tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].update+ "</td>";
-			tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].tested+ "</td>";
-			tbody += '</tr>';
-		}
-
-		var exploits = content.exploits;
-		var exploits_section = '';
-		for(var exp in exploits) {
-			exploits_section += '<p><strong>' +exploits[exp].system+ '</strong>: ' +exploits[exp].download_url+ '</p>';
-			exploits_section += '<p><strong>' +exploits[exp].sha+ '</strong>: ' +exploits[exp].hash+ '</p>';
-		}
-
-		$('#description_section').append(description_details);
-		$('#affeted_prods_section thead').append(thead);
-		$('#affeted_prods_section tbody').append(tbody);
-		$('#exploits_section').append(exploits_section);
-		
-	}
-
-	function validate(db) {
-		page = window.location.hash;
-		if(page == '') {
-			window.location.href = 'index.html';
-		}
-		if(!(page in db)) {
-			document.body.innerHTML = '<h1>Not found 404</h1>'
-		}
-		else {
-			render_content(db[page].page_content);
-		}
-	}
-
-	window.onhashchange = function() {
-    	location.reload(true);
-	}
-
-	var db, page;
-
-	$.ajax({
-		type: 'GET',
-		url: 'db/db.json',
-	}).done(function(response) {
-		db = response;
-		validate(db);
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		alert(errorThrown);
-	}).always(function() {
-		// this happens error or not
-	});
-
-</script>
-
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Windows Exploits</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="css/standard.css">
+	</head>
+	<body>
+		<div id="head">
+			<div class="head_img"><a href="index.html"><img src="img/logo2.png" style="width: 32px; height: 32px;" alt="Tipue"></a></div>
+		</div>
+		<div class="block">
+		<div id="description" class="low" style="padding-top: 100px;">
+		<div id="page_title">
+			<h1></h1>
+		</div>
+		<div id="description_section">
+			<h2>Description</h2>
+		</div>
+		<br>
+		<h2>Affected Products</h2>
+		<p>
+		<table id="affeted_prods_section">
+			<thead>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<br>
+		<div id="exploits_section">
+			<h2>Exploits</h2>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+		<script type="text/javascript">
+			// saving in ram all pages and it's properties
+			
+			function render_content(content) {
+				$('#page_title h1').append(content.title);
+			
+				var description_details = '';
+				var details = content.description_details;
+			
+				for(var desc_detail in details) {
+					description_details += '<p><strong>' +desc_detail+ ':</strong> ' +details[desc_detail]+ '</p>';
+				}
+			
+				var affeted_prods = content.affected_products;
+				var thead = '<tr>';
+				for(var column in affeted_prods.columns) {
+					thead += "<th style='text-align:left;' >" +affeted_prods.columns[column]+ "</th>";
+				}
+				thead += '</tr>';
+			
+				var tbody = '';
+				for(var val in affeted_prods.vals) {
+					tbody += '<tr>';
+					tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].name+ "</td>";
+					tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].version+ "</td>";
+					tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].update+ "</td>";
+					tbody += "<td style='text-align:left;' >" +affeted_prods.vals[val].tested+ "</td>";
+					tbody += '</tr>';
+				}
+			
+				var exploits = content.exploits;
+				var exploits_section = '';
+				for(var exp in exploits) {
+					exploits_section += '<p><strong>' +exploits[exp].system+ '</strong>: ' +exploits[exp].download_url+ '</p>';
+					exploits_section += '<p><strong>' +exploits[exp].sha+ '</strong>: ' +exploits[exp].hash+ '</p>';
+				}
+			
+				$('#description_section').append(description_details);
+				$('#affeted_prods_section thead').append(thead);
+				$('#affeted_prods_section tbody').append(tbody);
+				$('#exploits_section').append(exploits_section);
+				
+			}
+			
+			function validate(db) {
+				page = window.location.hash;
+				if(page == '') {
+					window.location.href = 'index.html';
+				}
+				if(!(page in db)) {
+					window.location.href = 'index.html';
+				}
+				else {
+					render_content(db[page].page_content);
+				}
+			}
+			
+			window.onhashchange = function() {
+			   	location.reload(true);
+			}
+			
+			var db, page;
+			
+			$.ajax({
+				type: 'GET',
+				url: 'db/db.json',
+			}).done(function(response) {
+				db = response;
+				validate(db);
+			}).fail(function(jqXHR, textStatus, errorThrown) {
+				alert(errorThrown);
+			}).always(function() {
+				// this happens error or not
+			});
+			
+		</script>
+	</body>
 </html>

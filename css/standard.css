@@ -46,17 +46,15 @@ ul
      display: block;
      margin: 0 auto;
      width: 280px;
-     font-weight: bold;
 }
 #results {
      margin-top: 10px;
      padding-top: 30px;
-     text-align: center;
 }
 #num_results {
      font-size: 14px;
      font-weight: 200;
-     color: #333333;
+     color: #333;
 }
 .result {
      padding: 20px 0;
@@ -128,11 +126,4 @@ h2
 {
      max-width: 150px;
      height: auto;
-}
-
-
-#Search
-.search_details
-{
-     color: #333;
 }

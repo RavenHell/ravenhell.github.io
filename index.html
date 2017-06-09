@@ -64,7 +64,7 @@
 				if(search_val != '') {
 					count_res = 0;
 					for(var page in db) {
-						found = db[page].toLowerCase().indexOf(search_val.toLowerCase()) > -1;
+						found = db[page].title.toLowerCase().indexOf(search_val.toLowerCase()) > -1;
 						if(found) {
 							results += gen_result_html(db[page]);
 							count_res += 1;
